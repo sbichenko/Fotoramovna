@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Fotoramovna demo page</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="../fotoramovna.css">
+		<link rel="stylesheet" href="vendor/fotorama/fotorama.css">
+        <script src="vendor/jquery-1.10.2.min.js"></script>
+		<script src="vendor/fotorama/fotorama.uncompressed.js"></script>
+		<script src="../fotoramovna.js"></script>
+	</head>
+	<body>
+        <h1>
+            <a href="https://github.com/sbichenko/Fotoramovna">Fotoramovna</a> demo page
+        </h1>
+        <h2>
+            Out-of-the-box
+        </h2>
+        <div class="explain">
+            Use the <code class="inline">.fotoramovna()</code> method on the Fotorama element after the <code class="inline">fotorama:ready</code> event has fired.
+        </div>
+        <code>&lt;head&gt;
+    &lt;!-- the Fotoramovna script --&gt;
+    &lt;script src=&quot;fotoramovna.js&quot;&gt;&lt;/script&gt;
+    &lt;!-- basic padding (not neccessary) --&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;fotoramovna.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div class=&quot;fotorama&quot; data-auto=&quot;false&quot;&gt;
+        &lt;a href=&quot;img/01.jpg&quot; data-thumb=&quot;img/thumbs/01.jpg&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;img/02.jpg&quot; data-thumb=&quot;img/thumbs/02.jpg&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;img/03.jpg&quot; data-thumb=&quot;img/thumbs/03.jpg&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;img/04.jpg&quot; data-thumb=&quot;img/thumbs/04.jpg&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;img/05.jpg&quot; data-thumb=&quot;img/thumbs/05.jpg&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;img/06.jpg&quot; data-thumb=&quot;img/thumbs/06.jpg&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;img/07.jpg&quot; data-thumb=&quot;img/thumbs/07.jpg&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;img/08.jpg&quot; data-thumb=&quot;img/thumbs/08.jpg&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;img/09.jpg&quot; data-thumb=&quot;img/thumbs/09.jpg&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;img/10.jpg&quot; data-thumb=&quot;img/thumbs/10.jpg&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;img/11.jpg&quot; data-thumb=&quot;img/thumbs/11.jpg&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;img/12.jpg&quot; data-thumb=&quot;img/thumbs/12.jpg&quot;&gt;&lt;/a&gt;
+        &lt;a href=&quot;https://www.youtube.com/watch?v=Dif0oAevn50&quot;&gt;&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        $(function() {
+            $('.fotorama1')
+                <strong>.on('fotorama:ready', function() {
+                    $(this).fotoramovna();
+                    })</strong>
+                .fotorama();
+            })
+    &lt;/script&gt;
+&lt;/body&gt;
+        </code>
+		<div class="fotorama fotorama1" data-auto="false">
+            <a href="img/01.jpg" data-thumb="img/thumbs/01.jpg"></a>
+            <a href="img/02.jpg" data-thumb="img/thumbs/02.jpg"></a>
+            <a href="img/03.jpg" data-thumb="img/thumbs/03.jpg"></a>
+            <a href="img/04.jpg" data-thumb="img/thumbs/04.jpg"></a>
+            <a href="img/05.jpg" data-thumb="img/thumbs/05.jpg"></a>
+            <a href="img/06.jpg" data-thumb="img/thumbs/06.jpg"></a>
+            <a href="img/07.jpg" data-thumb="img/thumbs/07.jpg"></a>
+            <a href="img/08.jpg" data-thumb="img/thumbs/08.jpg"></a>
+            <a href="img/09.jpg" data-thumb="img/thumbs/09.jpg"></a>
+            <a href="img/10.jpg" data-thumb="img/thumbs/10.jpg"></a>
+            <a href="img/11.jpg" data-thumb="img/thumbs/11.jpg"></a>
+            <a href="img/12.jpg" data-thumb="img/thumbs/12.jpg"></a>
+            <a href="https://www.youtube.com/watch?v=Dif0oAevn50"></a>
+        </div>
+        <script type="text/javascript">
+		    $(function() {
+                $('.fotorama1')
+                    .on('fotorama:ready', function() {
+                        $(this).fotoramovna();
+                        })
+                    .fotorama();
+                })
+		</script>
+
+        <!---------------------------->
+        <h2>
+            Testing via console
+        </h2>
+        <div class="explain">
+            You can test Fotoramovna from your browser's console with a single command (don't forget to indicate the correct Fotorama selector). Try it out on the <a href="http://fotorama.io">Fotorama homepage</a>
+        </div>
+        <code>$.getScript('http://vzryvy.ru/projects/fotoramovna/fotoramovna.js', function(){$('.fotorama').fotoramovna()})</code>
+
+        <!---------------------------->
+        <h2>
+            Thumbnail dimensions
+        </h2>
+        <div class="explain">
+            Fotoramovna uses Fotorama's thumbnail dimensions, as specified by data attributes. It doesn't account for data-attributes on individual thubnails (yet).
+        </div>
+        <code>&lt;div class=&quot;fotorama&quot; data-auto=&quot;false&quot; <strong>data-thumbwidth=&quot;100&quot; data-thumbheight=&quot;100&quot;</strong>&gt;
+    &lt;!-- Fotorama content --&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    $(function() {
+        $('.fotorama')
+            .on('fotorama:ready', function() {
+                $(this).fotoramovna();
+                })
+            .fotorama();
+        })
+&lt;/script&gt;
+        </code>
+        <div class="fotorama fotorama-thumbs" data-auto="false" data-thumbwidth="100" data-thumbheight="100">
+            <a href="img/01.jpg" data-thumb="img/thumbs/01.jpg"></a>
+            <a href="img/02.jpg" data-thumb="img/thumbs/02.jpg"></a>
+            <a href="img/03.jpg" data-thumb="img/thumbs/03.jpg"></a>
+            <a href="img/04.jpg" data-thumb="img/thumbs/04.jpg"></a>
+            <a href="img/05.jpg" data-thumb="img/thumbs/05.jpg"></a>
+            <a href="img/06.jpg" data-thumb="img/thumbs/06.jpg"></a>
+            <a href="img/07.jpg" data-thumb="img/thumbs/07.jpg"></a>
+            <a href="img/08.jpg" data-thumb="img/thumbs/08.jpg"></a>
+            <a href="img/09.jpg" data-thumb="img/thumbs/09.jpg"></a>
+            <a href="img/10.jpg" data-thumb="img/thumbs/10.jpg"></a>
+            <a href="img/11.jpg" data-thumb="img/thumbs/11.jpg"></a>
+            <a href="img/12.jpg" data-thumb="img/thumbs/12.jpg"></a>
+            <a href="https://www.youtube.com/watch?v=Dif0oAevn50"></a>
+        </div>
+        <script type="text/javascript">
+		    $(function() {
+                $('.fotorama-thumbs')
+                    .on('fotorama:ready', function() {
+                        $(this).fotoramovna();
+                        })
+                    .fotorama();
+                })
+		</script>
+
+         <!---------------------------->
+        <h2>
+            Centered thumbnails
+        </h2>
+         <div class="explain">
+             Fotoramovna's thumbnails can either be justified or centered. If they are centered, their height if set to fit data-thumbheight by default (this behaviour is controlled by <code class="inline">fitHeight</code> property). In this mode Fotoramovna adds <code class="inline">margin-right</code> to cells equal to Fotorama's <code class="inline">thumbmargin</code>. It's fully fluid -- try resizing the page.
+        </div>
+        <code>&lt;div class=&quot;fotorama&quot; data-auto=&quot;false&quot; data-thumbwidth=&quot;100&quot; data-thumbheight=&quot;100&quot;&gt;
+    &lt;!-- Fotorama content --&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    $(function() {
+        $('.fotorama')
+            .on('fotorama:ready', function() {
+                $(this).fotoramovna({<strong>horizontalAlign: &quot;center&quot;</strong>});
+                })
+            .fotorama();
+        })
+&lt;/script&gt;
+        </code>
+        <div class="fotorama fotorama-horizontal" data-auto="false" data-thumbwidth="100" data-thumbheight="100">
+            <a href="img/01.jpg" data-thumb="img/thumbs/01.jpg"></a>
+            <a href="img/02.jpg" data-thumb="img/thumbs/02.jpg"></a>
+            <a href="img/03.jpg" data-thumb="img/thumbs/03.jpg"></a>
+            <a href="img/04.jpg" data-thumb="img/thumbs/04.jpg"></a>
+            <a href="img/05.jpg" data-thumb="img/thumbs/05.jpg"></a>
+            <a href="img/06.jpg" data-thumb="img/thumbs/06.jpg"></a>
+            <a href="img/07.jpg" data-thumb="img/thumbs/07.jpg"></a>
+            <a href="img/08.jpg" data-thumb="img/thumbs/08.jpg"></a>
+            <a href="img/09.jpg" data-thumb="img/thumbs/09.jpg"></a>
+            <a href="img/10.jpg" data-thumb="img/thumbs/10.jpg"></a>
+            <a href="img/11.jpg" data-thumb="img/thumbs/11.jpg"></a>
+            <a href="img/12.jpg" data-thumb="img/thumbs/12.jpg"></a>
+            <a href="https://www.youtube.com/watch?v=Dif0oAevn50"></a>
+        </div>
+        <script type="text/javascript">
+		    $(function() {
+                $('.fotorama-horizontal')
+                    .on('fotorama:ready', function() {
+                        $(this).fotoramovna({horizontalAlign: "center"});
+                        })
+                    .fotorama();
+                })
+		</script>
+
+         <!---------------------------->
+        <h2>
+            Styling
+        </h2>
+        <div class="explain">
+            Fotoramovna can be fully styled. Just try not to touch inline styles (except for the frame <code class="inline">'.fotoramovna__frame'</code> -- just keep it absolutely positioned). Feel free to experiment!
+        </div>
+         <code>&lt;div class=&quot;fotorama fotorama-styles&quot; data-auto=&quot;false&quot; data-thumbwidth=&quot;100&quot; data-thumbheight=&quot;100&quot;&gt;
+    &lt;!-- Fotorama content --&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    $(function() {
+        $('.fotorama3')
+            .on('fotorama:ready', function() {
+                $(this).fotoramovna({classname: 'fotoramovna-styled'});
+                })
+            .fotorama();
+        })
+&lt;/script&gt;
+
+&lt;style&gt;
+    .fotoramovna-styled {
+        padding: 20px;
+        background-color: darkgray;
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
+        width: 700px;
+        margin: 0 auto;
+    }
+
+    .fotoramovna-styled__img {
+        border: 1px gray solid;
+    }
+
+    /* it's ok to override frame's styles, except for `position` */
+    .fotoramovna-styled__frame[style] {
+        border-color: rgb(200,0,0) !important;
+        box-shadow: 0 0 10px rgba(255,0,0,0.5);
+    }
+
+    .fotoramovna-styled__wrapper-fotorama {
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+
+    .fotoramovna-styled__cell {
+        margin-bottom: 25px;
+    }
+&lt;/style&gt;
+        </code>
+        <div class="fotorama fotorama-styles" data-auto="false" data-thumbwidth="100" data-thumbheight="100">
+            <a href="img/01.jpg" data-thumb="img/thumbs/01.jpg"></a>
+            <a href="img/02.jpg" data-thumb="img/thumbs/02.jpg"></a>
+            <a href="img/03.jpg" data-thumb="img/thumbs/03.jpg"></a>
+            <a href="img/04.jpg" data-thumb="img/thumbs/04.jpg"></a>
+            <a href="img/05.jpg" data-thumb="img/thumbs/05.jpg"></a>
+            <a href="img/06.jpg" data-thumb="img/thumbs/06.jpg"></a>
+            <a href="img/07.jpg" data-thumb="img/thumbs/07.jpg"></a>
+            <a href="img/08.jpg" data-thumb="img/thumbs/08.jpg"></a>
+            <a href="img/09.jpg" data-thumb="img/thumbs/09.jpg"></a>
+            <a href="img/10.jpg" data-thumb="img/thumbs/10.jpg"></a>
+            <a href="img/11.jpg" data-thumb="img/thumbs/11.jpg"></a>
+            <a href="img/12.jpg" data-thumb="img/thumbs/12.jpg"></a>
+            <a href="https://www.youtube.com/watch?v=Dif0oAevn50"></a>
+        </div>
+        <script type="text/javascript">
+		    $(function() {
+                $('.fotorama-styles')
+                    .on('fotorama:ready', function() {
+                        $(this).fotoramovna({classname: 'fotoramovna-styled'});
+                        })
+                    .fotorama();
+                })
+		</script>
+        <style>
+            .fotoramovna-styled {
+                padding: 20px;
+                background-color: darkgray;
+                box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
+                width: 700px;
+                margin: 0 auto;
+            }
+
+            .fotoramovna-styled__img {
+                border: 1px gray solid;
+            }
+
+            /* it's ok to override frame's styles, except for `position` */
+            .fotoramovna-styled__frame[style] {
+                border-color: rgb(200,0,0) !important;
+                box-shadow: 0 0 10px rgba(255,0,0,0.5);
+            }
+
+            .fotoramovna-styled__wrapper-fotorama {
+                padding-top: 20px;
+                padding-bottom: 10px;
+            }
+
+            .fotoramovna-styled__cell {
+                margin-bottom: 25px;
+            }
+        </style>
+
+         <!---------------------------->
+        <h2>
+            Options.
+        </h2>
+        <div class="explain">
+        Fiddle with the options. Every time a value changes, Fotoramovna is destroyed and recreated with new values.
+        </div>
+        <div class="options-inputs">
+           <label>
+               hideOnInit
+               <input class="hide-input" checked type="checkbox" />
+           </label>
+            <label>
+               disableScroll
+               <input class="disable-scroll-input" type="checkbox" />
+           </label>
+           <label>
+               horizontalAlign
+               <select class="halign-input">
+                  <option selected>justify</option>
+                  <option>center</option>
+              </select>
+           </label>
+           <label>
+               verticalAlign
+               <select class="valign">
+                  <option>top</option>
+                  <option selected>middle</option>
+                  <option>bottom</option>
+              </select>
+           </label>
+           <label>
+              classname
+              <input type="text" class="classname-input" value="fotoramovna"/>
+          </label>
+           <label>
+              duration
+              <input type="number" class="duration-input" step="10" value="200"/>
+          </label>
+           <label>
+              verticalOffset
+              <input type="number" class="voffset-input" step="10" value="50"/>
+          </label>
+           <label>
+              getWidthFromFotorama
+              <input type="checkbox" class="getwidth-input"/>
+          </label>
+            <label>
+               columns (horizontalAlign: "justify")
+               <input class="columns-input" type="number" value="5" />
+           </label>
+            <label>
+              fitHeight (horizontalAlign: "center")
+              <input type="checkbox" checked class="fit-height-input"/>
+          </label>
+       </div>
+
+        <div class="fotorama fotorama-options" data-auto="false">
+            <a href="img/01.jpg" data-thumb="img/thumbs/01.jpg"></a>
+            <a href="img/02.jpg" data-thumb="img/thumbs/02.jpg"></a>
+            <a href="img/03.jpg" data-thumb="img/thumbs/03.jpg"></a>
+            <a href="img/04.jpg" data-thumb="img/thumbs/04.jpg"></a>
+            <a href="img/05.jpg" data-thumb="img/thumbs/05.jpg"></a>
+            <a href="img/06.jpg" data-thumb="img/thumbs/06.jpg"></a>
+            <a href="img/07.jpg" data-thumb="img/thumbs/07.jpg"></a>
+            <a href="img/08.jpg" data-thumb="img/thumbs/08.jpg"></a>
+            <a href="img/09.jpg" data-thumb="img/thumbs/09.jpg"></a>
+            <a href="img/10.jpg" data-thumb="img/thumbs/10.jpg"></a>
+            <a href="img/11.jpg" data-thumb="img/thumbs/11.jpg"></a>
+            <a href="img/12.jpg" data-thumb="img/thumbs/12.jpg"></a>
+            <a href="https://www.youtube.com/watch?v=Dif0oAevn50"></a>
+        </div>
+        <script type="text/javascript">
+		    $(function() {
+                function get_options_object() {
+                    return {
+                        horizontalAlign: $('.halign-input :selected').text(),
+                        columns: $('.columns-input').val(),
+                        hideFotoramaOnInit: $('.hide-input').is(":checked"),
+                        disableScroll: $('.disable-scroll-input').is(":checked"),
+                        verticalAlign: $('.valign :selected').text(),
+                        classname: $('.classname-input').val(),
+                        duration: $('.duration-input').val(),
+                        verticalOffset: $('.voffset-input').val(),
+                        getWidthFromFotorama: $('.getwidth-input').is(":checked"),
+                        fitHeight: $('.fit-height-input').is(":checked")
+                        }
+                    }
+                $('.fotorama-options')
+                    .on('fotorama:ready', function() {
+                        $(this).fotoramovna(get_options_object());
+                        })
+                    .fotorama();
+                $('.options-inputs input, .options-inputs select').on('change', function() {
+                    $('.fotorama-options').unfotoramovna();
+                    $('.fotorama-options').fotoramovna(get_options_object());
+                    })
+                })
+		</script>
+
+        <h2>
+            Create and destruct
+        </h2>
+        <div class="explain">
+            Fotoramovna can be seamlessly destroyed -- with Fotorama returning to its initial state.
+        </div>
+        <input type="button" class="create-destruct-input" value="Create"/>
+        <code class="inline create-destruct-code">$('.fotorama').fotoramovna();</code>
+        <div class="fotorama fotorama-create-destruct-demo" data-auto="false">
+            <a href="img/01.jpg" data-thumb="img/thumbs/01.jpg"></a>
+            <a href="img/02.jpg" data-thumb="img/thumbs/02.jpg"></a>
+            <a href="img/03.jpg" data-thumb="img/thumbs/03.jpg"></a>
+            <a href="img/04.jpg" data-thumb="img/thumbs/04.jpg"></a>
+            <a href="img/05.jpg" data-thumb="img/thumbs/05.jpg"></a>
+            <a href="img/06.jpg" data-thumb="img/thumbs/06.jpg"></a>
+            <a href="img/07.jpg" data-thumb="img/thumbs/07.jpg"></a>
+            <a href="img/08.jpg" data-thumb="img/thumbs/08.jpg"></a>
+            <a href="img/09.jpg" data-thumb="img/thumbs/09.jpg"></a>
+            <a href="img/10.jpg" data-thumb="img/thumbs/10.jpg"></a>
+            <a href="img/11.jpg" data-thumb="img/thumbs/11.jpg"></a>
+            <a href="img/12.jpg" data-thumb="img/thumbs/12.jpg"></a>
+            <a href="https://www.youtube.com/watch?v=Dif0oAevn50"></a>
+        </div>
+        <script type="text/javascript">
+		    $(function() {
+                $('.fotorama-create-destruct-demo')
+                    .fotorama();
+                $('.create-destruct-input').on('click', function() {
+                    if ($('.fotoramovna .fotorama-create-destruct-demo').length > 0) {
+                        $('.fotorama-create-destruct-demo').unfotoramovna();
+                        $(this).val('Create');
+                        $('.create-destruct-code').text("$('.fotorama').fotoramovna()");
+                        }
+                    else {
+                        $('.fotorama-create-destruct-demo').fotoramovna();
+                        $(this).val('Destroy');
+                        $('.create-destruct-code').text("$('.fotorama').unfotoramovna()");
+                        }
+                    })
+                })
+		</script>
+        <h2>
+            DOM manipulation
+        </h2>
+        <div class="explain">
+            Elements inside Fotoramovna can be styled and it's DOM may be expanded. Always set <code class="inline">font-size</code> explicitly and use the <code class="inline">$('fotorama').data('fotoramovna').refresh()</code> method afterwards.
+        </div>
+        <code>&lt;div class=&quot;fotorama fotorama-dom&quot; data-auto=&quot;false&quot;&gt;
+    &lt;!-- Fotorama content --&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+    .fotoramovna-dom__cell {
+        /* always put '!important' when styling cells */
+        width: 100px !important;
+        }
+
+    .fotoramovna-dom__sizewrapper {
+        /* always put '!important' when styling cells */
+        margin: 0 auto;
+        }
+
+    .fotoramovna-dom .caption {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font-size: 14px
+        }
+&lt;/style&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    $(function() {
+        var captions = [
+            'explosion 1',
+            'explosion 2',
+            'explosion 3',
+            'explosion 4',
+            'explosion 5',
+            'explosion 6',
+            'explosion 7',
+            'explosion 8',
+            'explosion 9',
+            'explosion 10',
+            'explosion 11',
+            'explosion 12',
+            'bridge explosion',
+            ];
+        $('.fotorama-dom')
+            .on('fotorama:ready', function() {
+                $(this).fotoramovna({classname: 'fotoramovna-dom', verticalAlign: 'bottom'});
+                $.each(captions, function(i) {
+                    $('.fotoramovna-dom__cell')
+                        .eq(i)
+                        .append(
+                            '&lt;div class=&quot;caption&quot;
+                                style=&quot;margin-top: 10px; margin-bottom: 20px; font-size:14px&quot;&gt;' + this + '&lt;/div&gt;'
+                            )
+                    })
+                $(this).data('fotoramovna').refresh();
+                })
+            .fotorama();
+        })
+&lt;/script&gt;
+        </code>
+        <div class="fotorama fotorama-dom" data-auto="false">
+            <a href="img/01.jpg" data-thumb="img/thumbs/01.jpg"></a>
+            <a href="img/02.jpg" data-thumb="img/thumbs/02.jpg"></a>
+            <a href="img/03.jpg" data-thumb="img/thumbs/03.jpg"></a>
+            <a href="img/04.jpg" data-thumb="img/thumbs/04.jpg"></a>
+            <a href="img/05.jpg" data-thumb="img/thumbs/05.jpg"></a>
+            <a href="img/06.jpg" data-thumb="img/thumbs/06.jpg"></a>
+            <a href="img/07.jpg" data-thumb="img/thumbs/07.jpg"></a>
+            <a href="img/08.jpg" data-thumb="img/thumbs/08.jpg"></a>
+            <a href="img/09.jpg" data-thumb="img/thumbs/09.jpg"></a>
+            <a href="img/10.jpg" data-thumb="img/thumbs/10.jpg"></a>
+            <a href="img/11.jpg" data-thumb="img/thumbs/11.jpg"></a>
+            <a href="img/12.jpg" data-thumb="img/thumbs/12.jpg"></a>
+            <a href="https://www.youtube.com/watch?v=Dif0oAevn50"></a>
+        </div>
+
+        <style>
+            .fotoramovna-dom__cell {
+                /* always put '!important' when styling cells */
+                width: 100px !important;
+                }
+                
+            .fotoramovna-dom__sizewrapper {
+                /* always put '!important' when styling cells */
+                margin: 0 auto;
+                }
+
+            .fotoramovna-dom .caption {
+                margin-top: 10px;
+                margin-bottom: 20px;
+                font-size: 14px
+                }
+        </style>
+
+        <script type="text/javascript">
+		    $(function() {
+                var captions = [
+                    'explosion 1',
+                    'explosion 2',
+                    'explosion 3',
+                    'explosion 4',
+                    'explosion 5',
+                    'explosion 6',
+                    'explosion 7',
+                    'explosion 8',
+                    'explosion 9',
+                    'explosion 10',
+                    'explosion 11',
+                    'explosion 12',
+                    'bridge explosion',
+                    ];
+                $('.fotorama-dom')
+                    .on('fotorama:ready', function() {
+                        $(this).fotoramovna({classname: 'fotoramovna-dom', verticalAlign: 'bottom'});
+                        $.each(captions, function(i) {
+                            $('.fotoramovna-dom__cell').eq(i).append('<div class="caption">' + this + '</div>')
+                            })
+                        $(this).data('fotoramovna').refresh();
+                        })
+                    .fotorama();
+                })
+		</script>
+
+        <h2>
+            Responsiveness
+        </h2>
+        <div class="explain">
+            The space between the thumbnails is fluid. The grid also has a <code class="inline">min-width</code> set based on the content of its rows. Fiddle with the input below to see how it works (it will trigger <code class="inline">window</code>'s <code class="inline">resize</code> event).
+        </div>
+        <input type="number" class="fluid-input" step="50" value="800"/> px
+        <div class="fluid-container" style="width: 800px">
+            <div class="fotorama fotorama-fluid-justify" data-auto="false" data-height="400">
+                <a href="img/01.jpg" data-thumb="img/thumbs/01.jpg"></a>
+                <a href="img/02.jpg" data-thumb="img/thumbs/02.jpg"></a>
+                <a href="img/03.jpg" data-thumb="img/thumbs/03.jpg"></a>
+                <a href="img/04.jpg" data-thumb="img/thumbs/04.jpg"></a>
+                <a href="img/05.jpg" data-thumb="img/thumbs/05.jpg"></a>
+                <a href="img/06.jpg" data-thumb="img/thumbs/06.jpg"></a>
+                <a href="img/07.jpg" data-thumb="img/thumbs/07.jpg"></a>
+                <a href="img/08.jpg" data-thumb="img/thumbs/08.jpg"></a>
+                <a href="img/09.jpg" data-thumb="img/thumbs/09.jpg"></a>
+                <a href="img/10.jpg" data-thumb="img/thumbs/10.jpg"></a>
+                <a href="img/11.jpg" data-thumb="img/thumbs/11.jpg"></a>
+                <a href="img/12.jpg" data-thumb="img/thumbs/12.jpg"></a>
+                <a href="https://www.youtube.com/watch?v=Dif0oAevn50"></a>
+            </div>
+            <div class="fotorama fotorama-fluid-center" data-auto="false" data-height="400">
+                <a href="img/01.jpg" data-thumb="img/thumbs/01.jpg"></a>
+                <a href="img/02.jpg" data-thumb="img/thumbs/02.jpg"></a>
+                <a href="img/03.jpg" data-thumb="img/thumbs/03.jpg"></a>
+                <a href="img/04.jpg" data-thumb="img/thumbs/04.jpg"></a>
+                <a href="img/05.jpg" data-thumb="img/thumbs/05.jpg"></a>
+                <a href="img/06.jpg" data-thumb="img/thumbs/06.jpg"></a>
+                <a href="img/07.jpg" data-thumb="img/thumbs/07.jpg"></a>
+                <a href="img/08.jpg" data-thumb="img/thumbs/08.jpg"></a>
+                <a href="img/09.jpg" data-thumb="img/thumbs/09.jpg"></a>
+                <a href="img/10.jpg" data-thumb="img/thumbs/10.jpg"></a>
+                <a href="img/11.jpg" data-thumb="img/thumbs/11.jpg"></a>
+                <a href="img/12.jpg" data-thumb="img/thumbs/12.jpg"></a>
+                <a href="https://www.youtube.com/watch?v=Dif0oAevn50"></a>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function() {
+                $('.fotorama-fluid-justify')
+                    .on('fotorama:ready', function() {
+                        $(this).fotoramovna({hideFotoramaOnInit: false});
+                        })
+                    .fotorama();
+                $('.fotorama-fluid-center')
+                    .on('fotorama:ready', function() {
+                        $(this).fotoramovna({hideFotoramaOnInit: false, horizontalAlign: "center"});
+                        })
+                    .fotorama();
+                $('.fluid-input').on('change', function() {
+                    $('.fluid-container').css('width', $(this).val());
+                    $(window).trigger('resize')
+                    })
+                })
+        </script>
+	</body>
+</html>
