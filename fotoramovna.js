@@ -730,7 +730,7 @@
 
     function assert(condition, message) {
         if (!condition) {
-            throw "Fotoramovna exception: assertion \"" + message + "\" failed";
+            throw "Fotoramovna exception. Assertion failed: \"" + message + "\"";
             }
         }
 
