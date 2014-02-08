@@ -262,17 +262,12 @@
 
         // go through all slides and create thumbs
         $.each(self.APIFotorama.data, function() {
+            assert(typeof(this.thumb) != 'undefined', "Thumb for slide " + this.i + " is undefined. Probably an HTML slide without a thumb set. Use data-thumb attribute to set thumb URL.")
             thumbNew = new FThumb(this.thumb, self);
             arrThumbs.push(thumbNew);
             arrDOMCells.push(thumbNew.$cell[0]);
             })
         $cells = $(arrDOMCells);
-
-        // check if there are html slides (must run after going through all slides in order to load them)
-        if ($(".fotorama__html", self.$fotorama).length > 0) {
-            throw "Fotoramovna error: fotorama contains HTML slides";
-            }
-
         self.arrThumbs = arrThumbs;
         self.$cells = $cells;
         }
