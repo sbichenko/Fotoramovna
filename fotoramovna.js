@@ -439,21 +439,20 @@
 
     Fotoramovna.prototype.detectRows = function() {
         var self = this,
-            topCellLast = Number.NEGATIVE_INFINITY;
+            leftCellLast = Number.POSITIVE_INFINITY;
 
-        self.$cells.css('marginTop', 0);
         self.arrRows = [];
         $.each(self.arrThumbs, function() {
             var $cell = this.$cell,
-                topCell = $cell.offset().top,
+                leftCell = $cell.offset().left,
                 rowLast;
 
-            if (topCell > topCellLast) {
+            if (leftCell <= leftCellLast) {
                 self.arrRows.push(new FRow);
                 }
             rowLast = self.arrRows[self.arrRows.length - 1];
             rowLast.addThumb(this);
-            topCellLast = topCell;
+            leftCellLast = leftCell;
             })
         }
 
