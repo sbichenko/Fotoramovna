@@ -1,5 +1,5 @@
 /**
- * FOTORAMOVNA v1.0--beta2
+ * FOTORAMOVNA v1.0--beta3
  *
  * @author Stanislav Bichenko (s.bichenko@gmail.com)
  * @link https://github.com/sbichenko/fotoramovna
@@ -551,13 +551,11 @@
             $.each(self.arrRows, function() {
                 var widthRow = 0;
                 this.$cells.each(function() {
-                    $(this).children(':not(.' + self.CSSClassNames.gridBreak + ')').each(function() {
-                        widthRow += $(this).outerWidth(true);
-                        })
-                    if (widthRow > widthMin) {
-                        widthMin = widthRow;
-                        }
+                    widthRow += $(this).outerWidth(true);
                     })
+                if (widthRow > widthMin) {
+                    widthMin = widthRow;
+                    }
                 })
             widthMin = widthMin + 1;
             self.$fotoramovna.css('minWidth', widthMin + 'px');
