@@ -150,6 +150,10 @@
         this.row = row;
         }
 
+    FThumb.prototype.setCSSClassForNewRow = function() {
+        this.$cell.addClass(this.Fotoramovna.CSSClassNames.firstInRow)
+        }
+
     function FRow() {
         this.arrThumbs = [];
         this.$cells = $([]);
@@ -210,7 +214,8 @@
             cellPlaceholder: self.nameClass + '__placeholder',
             sizewrapper: self.nameClass + '__sizewrapper',
             img: self.nameClass + '__img',
-            frame: self.nameClass + '__frame'
+            frame: self.nameClass + '__frame',
+            firstInRow: self.nameClass + '__first-cell-in-row'
             };
 
         // load thumbs
@@ -441,6 +446,7 @@
         var self = this,
             leftCellLast = Number.POSITIVE_INFINITY;
 
+        self.$cells.removeClass(self.CSSClassNames.firstInRow);
         self.arrRows = [];
         $.each(self.arrThumbs, function() {
             var $cell = this.$cell,
@@ -449,6 +455,7 @@
 
             if (leftCell <= leftCellLast) {
                 self.arrRows.push(new FRow);
+                this.setCSSClassForNewRow();
                 }
             rowLast = self.arrRows[self.arrRows.length - 1];
             rowLast.addThumb(this);
