@@ -1,5 +1,5 @@
 /**
- * FOTORAMOVNA v1.0--beta3
+ * FOTORAMOVNA v1.0--beta4
  *
  * @author Stanislav Bichenko (s.bichenko@gmail.com)
  * @link https://github.com/sbichenko/fotoramovna
