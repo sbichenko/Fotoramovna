@@ -594,7 +594,7 @@
                 rowNew = thumb.row,
                 rowCur = self.thumbCur ? self.thumbCur.row : false,
                 isNewRow = (rowNew !== rowCur),
-                heightFotorama = self.$wrapperFotorama.outerHeight(),
+                heightFotorama = self.$wrapperFotorama.outerHeight(false),
                 direction = rowCur && self.arrRows.indexOf(rowNew) > self.arrRows.indexOf(rowCur) ?
                     'down' :
                     'up',
@@ -684,7 +684,7 @@
                 // if the call came from a Fotoramovna thumb, we should scroll down or up so that
                 // Fotorama is centered vertically
                 scrollTopTarget =
-                    topTargetStageAbsolute - ($(window).height() - $stage.outerHeight()) / 2
+                    topTargetStageAbsolute - ($(window).height() - $stage.outerHeight(false)) / 2
                     + self.offsetScrollVertical;
                 break;
             }
@@ -703,7 +703,7 @@
             var targetWidth = thumb.$img.outerWidth()
                     - parseFloat(self.$frame.css('borderBottomWidth'))
                     - parseFloat(self.$frame.css('borderTopWidth')),
-                targetHeight = thumb.$img.outerHeight()
+                targetHeight = thumb.$img.outerHeight(false)
                     - parseFloat(self.$frame.css('borderRightWidth'))
                     - parseFloat(self.$frame.css('borderLeftWidth')),
                 // not using .position() to allow using non-static positioning for $sizewrappers and $imgs
