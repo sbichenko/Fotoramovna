@@ -1,5 +1,5 @@
 /**
- * FOTORAMOVNA v1.0--beta4
+ * FOTORAMOVNA v1.0--beta5
  *
  * @author Stanislav Bichenko (s.bichenko@gmail.com)
  * @link https://github.com/sbichenko/fotoramovna
@@ -241,10 +241,13 @@
         // set min-width for grid
         self.setMinWidth();
 
-        // set up events
+        // set up event listeners
         self.listenToThumbs();
         self.listenToFotorama();
         self.listenToResize();
+
+        // set up events
+        self.setEventLoad();
 
         // create API object
         self.initAPI();
@@ -427,7 +430,7 @@
                 var thumb = this;
 
                 onImageLoad(thumb.$img, function() {
-                    thumb.$sizewrapper.css('width', thumb.$img.outerWidth() - 1 + 'px');
+                    thumb.$sizewrapper.css('width', thumb.$img.outerWidth(false) - 1 + 'px');
 
                     // recalculate rows and row paddingn height. This is pretty wasteful,
                     // but doesn't seem to incure a noticeable performance impact.
@@ -519,6 +522,27 @@
                     self.selectThumb('refresh');
                     }
                 })
+        }
+
+    Fotoramovna.prototype.setEventLoad = function() {
+        var self = this;
+
+        (function() {
+            var countLoadedThumbs = 0;
+
+            $.each(self.arrThumbs, function() {
+                onImageLoad(this.$img, function() {
+                    countLoadedThumbs++;
+                    if (self.arrThumbs.length <= countLoadedThumbs) {
+                        // set timeout to make sure that all other internal event handlers
+                        // have been called
+                        setTimeout(function() {
+                            self.$fotorama.trigger('fotoramovna:load');
+                            }, 10);
+                        }
+                    });
+                })
+            })();
         }
 
     Fotoramovna.prototype.remove = function() {
@@ -700,7 +724,7 @@
         onImageLoad(thumb.$img, function() {moveFrame();})
 
         function moveFrame() {
-            var targetWidth = thumb.$img.outerWidth()
+            var targetWidth = thumb.$img.outerWidth(false)
                     - parseFloat(self.$frame.css('borderBottomWidth'))
                     - parseFloat(self.$frame.css('borderTopWidth')),
                 targetHeight = thumb.$img.outerHeight(false)
